@@ -8,7 +8,7 @@ var Schema = mongoose.Schema;
 //define our TodoSchema
 var TodoSchema = new Schema({
   author : String,
-  descrption : String,
+  description : String,
   difficultyLevel : Number
 });
 
