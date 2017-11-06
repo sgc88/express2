@@ -31,6 +31,10 @@ app.get("/todos", function(req, res){
   res.sendFile("views/allTodos.html", {root : __dirname});
 });
 
+app.get("/createTodo", function(req, res){
+  res.sendFile("views/createTodo.html", {root:__dirname});
+});
+
 
 //////////////////
 //API ENDPOINTS//
@@ -44,10 +48,14 @@ app.get("/api/todos", function(req, res){
     if(error){
       console.log(error);
     }else{
-      // send the todos back to the client 
+      // send the todos back to the client
       res.json(todos);
     }
   });
+});
+
+app.post("/api/createTodo", function(req, res){
+  console.log("req.body");
 });
 
 
