@@ -3,7 +3,7 @@ var express = require("express");
 
 //require body-parser
 var bodyParser = require("body-parser");
-//re2quiring the model folder wihich deals with DB
+//requiring the model folder wihich deals with DB
 var db = require("./models");
 
 //initiliazing a new express application
@@ -12,11 +12,30 @@ var app = express();
 //express middleware ti serve static file in public folder
 app.use(express.static(__dirname + "/public"));
 
+app.use(bodyParser.urlencoded({extended : true}));
+
+///////////////////
+//HTML ENDPOINTS //
+//////////////////
+
+
 //get route for root
 app.get('/', function(req, res){
   //sending index.html as a response to the client
   res.sendFile("views/index.html", {root : __dirname});
 });
+
+//get route for all todos
+app.get("/todos", function(req, res){
+  // send the allTodos.html file to the client
+  res.sendFile("views/allTodos.html", {root : __dirname});
+});
+
+
+//////////////////
+//API ENDPOINTS//
+/////////////////
+
 
 //telling what port our express applicationis listening to/connected
 app.listen(3000, function(){
