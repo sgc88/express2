@@ -1,6 +1,11 @@
 //requiring express module
 var express = require("express");
 
+//require body-parser
+var bodyParser = require("body-parser");
+//re2quiring the model folder wihich deals with DB
+var db = require("./models");
+
 //initiliazing a new express application
 var app = express();
 
