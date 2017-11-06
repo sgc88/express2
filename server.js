@@ -36,6 +36,20 @@ app.get("/todos", function(req, res){
 //API ENDPOINTS//
 /////////////////
 
+//get routes for all todos
+app.get("/api/todos", function(req, res){
+  //go to the db, find all todos
+  db.Todo.find({}, function(error, todos){
+    //check for an error finding todos
+    if(error){
+      console.log(error);
+    }else{
+      // send the todos back to the client 
+      res.json(todos);
+    }
+  });
+});
+
 
 //telling what port our express applicationis listening to/connected
 app.listen(3000, function(){
