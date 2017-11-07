@@ -18,6 +18,13 @@ $(document).ready(function(){
     success : onSuccess,
     error : onError
   });
+
+  $("#todoTarget").on("click", ".todo", function(){
+    var id = $(this).closest(".todo").data("todo-id");
+    console.log(id);
+    window.location.href = "/todos/" + id;
+  });
+
 });
 
 //define the onSuccess function
@@ -59,7 +66,7 @@ function getTodoHtml(item){
   //this function will return the html output for a single item
   return`
   <hr>
-  <p>
+  <p class="todo" data-todo-id="${item._id}">
     <b>${item.description}</b>
     by ${item.author}
     (<i>Difficulty: ${item.difficultyLevel}</i>)
