@@ -25,7 +25,10 @@ $(document).ready(function(){
       success: deleteSuccess,
       error: deleteError
     });
-
+  });
+  $("#todoTarget").on("click", ".edit-todo", function(event){
+    console.log("testing...");
+    window.location.href="/todos/" + id + "/edit";
   });
 });
 
@@ -42,6 +45,8 @@ function onSuccess(response){
           <strong>Difficulty: </strong> ${response.difficultyLevel}
         </p>
         <button class="btn btn-warning delete-todo todo" data-id="${response._id}">Delete</button>
+        <button class="btn btn-success edit-todo todo" data-id="${response._id}">Edit</button>
+
     </div>
   `;
   $("#todoTarget").append(output);
