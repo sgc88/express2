@@ -15,6 +15,18 @@ $(document).ready(function(){
     success: onSuccess,
     error: onError
   });
+
+  $("#todoTarget").on("click", ".delete-todo", function(event){
+    console.log("clicked me");
+    $.ajax({
+      method: "DELETE",
+      url: url,
+      data: id,
+      success: deleteSuccess,
+      error: deleteError
+    });
+
+  });
 });
 
 function onSuccess(response){
@@ -29,6 +41,7 @@ function onSuccess(response){
         <p>
           <strong>Difficulty: </strong> ${response.difficultyLevel}
         </p>
+        <button class="btn btn-warning delete-todo todo" data-id="${response._id}">Delete</button>
     </div>
   `;
   $("#todoTarget").append(output);
@@ -36,4 +49,11 @@ function onSuccess(response){
 
 function onError(error){
   console.log(error);
+}
+
+function deleteSuccess(json){
+  window.location.href = "/todos"
+}
+function deleteError(error){
+  concole.log(error);
 }
