@@ -4,7 +4,7 @@ console.log("testing editTodo...");
 var windowPath = window.location.pathname;
 var windowPathSplit = windowPath.split('/');
 var id = windowPathSplit[2];
-var url = '/api/todos' + id;
+var url = '/api/todos/' + id;
 
 $(document).ready(function(){
   $.ajax({
@@ -16,7 +16,7 @@ $(document).ready(function(){
 });
 
 function onSuccess(result){
-  var output= `
+  var output=`
   <form id="editTodoForm">
     <div class="form-group">
       <label for="description">Description</label>
@@ -28,13 +28,11 @@ function onSuccess(result){
     </div>
     <div class="form-group">
       <label for="author">Author</label>
-      <input type="text" class="form-control" name="author"value="${result.author}">
+      <input type="text" class="form-control" name="author" value="${result.author}">
     </div>
     <button onclick="editCancel()" class="btn btn-danger">Cancel</button>
     <button onclick="editSave()" class="btn btn-successt">Save</button>
   </form>
-
-
   `;
   $("#todoTarget").append(output);
 }
@@ -55,6 +53,7 @@ function editSave(){
 
 function onSave(result){
   console.log(result);
+  window.location.href='/todos/' + id;
 }
 
 function onError(error){
